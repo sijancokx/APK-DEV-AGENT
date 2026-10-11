@@ -1,0 +1,6 @@
+{
+  "name": "Block Blast",
+  "description": "Game Block Blast realistis dengan visual 3D, fisika partikel dinamis, mode tantangan waktu, level progresif, kustomisasi tema, dan multipemain.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
