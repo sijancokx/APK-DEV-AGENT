@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with game progress and statistics",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "bestScore": { "type": "integer" },
+        "currentLevel": { "type": "integer" },
+        "totalLinesCleared": { "type": "integer" },
+        "themeId": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "bestScore", "currentLevel", "updatedAt"]
+    },
+    "LeaderboardEntry": {
+      "title": "LeaderboardEntry",
+      "description": "Public leaderboard score entry for various game modes",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "score": { "type": "integer" },
+        "mode": { "type": "string", "enum": ["classic", "time_attack", "daily"] },
+        "linesCleared": { "type": "integer" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "score", "mode", "updatedAt"]
+    },
+    "MultiplayerRoom": {
+      "title": "MultiplayerRoom",
+      "description": "Real-time 1v1 duel room for Block Blast",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "hostId": { "type": "string" },
+        "hostName": { "type": "string" },
+        "guestId": { "type": "string" },
+        "guestName": { "type": "string" },
+        "status": { "type": "string", "enum": ["waiting", "playing", "finished"] },
+        "hostScore": { "type": "integer" },
+        "guestScore": { "type": "integer" },
+        "hostLines": { "type": "integer" },
+        "guestLines": { "type": "integer" },
+        "hostAlive": { "type": "boolean" },
+        "guestAlive": { "type": "boolean" },
+        "winnerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "hostId", "hostName", "status", "hostScore", "guestScore", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Individual player profiles and progress"
+    },
+    "/leaderboard/{entryId}": {
+      "schema": { "$ref": "#/entities/LeaderboardEntry" },
+      "description": "Global leaderboard rankings per game mode"
+    },
+    "/multiplayer_rooms/{roomId}": {
+      "schema": { "$ref": "#/entities/MultiplayerRoom" },
+      "description": "Real-time multiplayer 1v1 game rooms"
+    }
+  }
+}

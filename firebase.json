@@ -1,0 +1,8 @@
+{
+  "firestore": [
+    {
+      "database": "ai-studio-android-blockbla-6cd479b4-0696-44dd-b040-f81f963b65d9",
+      "rules": "firestore.rules"
+    }
+  ]
+}
